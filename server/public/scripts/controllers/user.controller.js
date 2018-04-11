@@ -4,33 +4,13 @@ myApp.controller('UserController', ['UserService', '$http', function (UserServic
   self.userService = UserService;
   self.userObject = UserService.userObject;
 
-  var goalProgress = new JustGage({
-    id: "bigfella",
-    value: 0,
-    min: 0,
-    max: 100,
-    label: "Miles Towards Goal",
-    titlePosition: 'below',
-    pointer: true,
-    gaugeWidthScale: .2,
-    relativeGaugeSize: true,
-    levelColors: [
-      "#ff0000",
-      "#ffff66",
-      "#ccff99",
-      "#33cc33"
-    ]
-  });
-  trackDateArrayLength = [];
-  trackDateArrayLength = trackDateArrayLength.length;
-
   /* Line Graph */
   var ctx = document.getElementById('lineChart').getContext('2d');
   var chart = new Chart(ctx, {
     // The type of chart we want to create
     type: 'line',
 
-    // The data for our dataset
+    // dataset
     data: {
       labels: [],
       datasets: [{
@@ -42,7 +22,7 @@ myApp.controller('UserController', ['UserService', '$http', function (UserServic
       }]
     },
 
-    // Configuration options go here
+    // Configurations
     options: {
       title: {
         display: true,
@@ -74,19 +54,22 @@ myApp.controller('UserController', ['UserService', '$http', function (UserServic
     }
   });
 
-
-  self.getLineChartData = function () {
-    $http.get('/rides/stats')
-      .then((response) => {
-        chart.chart.config.data.labels = response.data.datesArray;
-        chart.chart.config.data.datasets[0].data = response.data.mileageArray;
-        chart.update();
-      })
-      .catch((err) => {
-        console.log('error getting line chart data', err);
-        // swal('Error getting chart information. Please try again later.', '', 'error');
-      })
+  self.getIOTdata = function (){
+    UserService.getTemp();
   }
-  self.getLineChartData();
+
+  // self.getLineChartData = function () {
+  //   $http.get('/temp')
+  //     .then((response) => {
+  //       chart.chart.config.data.labels = response.data.datesArray;
+  //       chart.chart.config.data.datasets[0].data = response.data.mileageArray;
+  //       chart.update();
+  //     })
+  //     .catch((err) => {
+  //       console.log('error getting line chart data', err);
+  //       // swal('Error getting chart information. Please try again later.', '', 'error');
+  //     })
+  // }
+  // self.getLineChartData();
 
 }]);
