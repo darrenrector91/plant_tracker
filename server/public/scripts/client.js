@@ -1,4 +1,4 @@
-var myApp = angular.module('myApp', ['ngRoute', 'ngMaterial', 'ngMessages'])
+var myApp = angular.module('myApp', ['ngRoute', 'ngMaterial', 'ngMessages', 'chart.js'])
   .config(function ($mdThemingProvider) {
     $mdThemingProvider.theme('default')
       .primaryPalette('lime')
