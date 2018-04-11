@@ -2,7 +2,7 @@
   "name": "plant_tracker",
   "version": "1.0.0",
   "description": "Application to visualize IOT data",
-  "main": "index.js",
+  "main": "server/server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -25,8 +25,12 @@
     "angular-route": "^1.6.9",
     "bcrypt": "^2.0.0",
     "body-parser": "^1.18.2",
+    "bootstrap": "^4.1.0",
+    "chartjs": "^0.3.24",
     "dotenv": "^5.0.1",
     "express": "^4.16.3",
+    "express-session": "^1.15.6",
+    "jquery": "^3.3.1",
     "nodemon": "^1.17.3",
     "pg": "^7.4.1"
   }

@@ -5,7 +5,7 @@ var myApp = angular.module('myApp', ['ngRoute', 'ngMaterial', 'ngMessages'])
       .warnPalette('red')
       .accentPalette('blue')
       .backgroundPalette('grey')
-      .dark();
+      // .dark();
   });
 
 /// Routes ///
@@ -17,7 +17,7 @@ myApp.config(['$routeProvider', '$locationProvider', function ($routeProvider, $
     })
     .when('/home', {
       templateUrl: '/views/templates/home.html',
-      controller: 'LoginController as vm',
+      controller: 'UserController as vm',
     })
     .when('/user', {
       templateUrl: '/views/templates/user.html',
