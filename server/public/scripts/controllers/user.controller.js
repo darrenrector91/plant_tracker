@@ -57,19 +57,4 @@ myApp.controller('UserController', ['UserService', '$http', function (UserServic
   self.getIOTdata = function (){
     UserService.getTemp();
   }
-
-  // self.getLineChartData = function () {
-  //   $http.get('/temp')
-  //     .then((response) => {
-  //       chart.chart.config.data.labels = response.data.datesArray;
-  //       chart.chart.config.data.datasets[0].data = response.data.mileageArray;
-  //       chart.update();
-  //     })
-  //     .catch((err) => {
-  //       console.log('error getting line chart data', err);
-  //       // swal('Error getting chart information. Please try again later.', '', 'error');
-  //     })
-  // }
-  // self.getLineChartData();
-
 }]);
