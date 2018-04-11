@@ -1,0 +1,33 @@
+{
+  "name": "plant_tracker",
+  "version": "1.0.0",
+  "description": "Application to visualize IOT data",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/darrenrector91/plant_tracker.git"
+  },
+  "author": "Darren Rector",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/darrenrector91/plant_tracker/issues"
+  },
+  "homepage": "https://github.com/darrenrector91/plant_tracker#readme",
+  "dependencies": {
+    "angular": "^1.6.9",
+    "angular-animate": "^1.6.9",
+    "angular-aria": "^1.6.9",
+    "angular-material": "^1.1.8",
+    "angular-messages": "^1.6.9",
+    "angular-route": "^1.6.9",
+    "bcrypt": "^2.0.0",
+    "body-parser": "^1.18.2",
+    "dotenv": "^5.0.1",
+    "express": "^4.16.3",
+    "nodemon": "^1.17.3",
+    "pg": "^7.4.1"
+  }
+}
