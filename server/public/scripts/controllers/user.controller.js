@@ -60,13 +60,14 @@ myApp.controller('UserController', ['UserService', '$http', function (UserServic
     }
   });
 
-  self.getIOTdata = function () {
-    UserService.getTemp();
-    console.log(self.getIOTdata);
+  // self.getIOTdata = function () {
+  //   UserService.getTemp();
+  //   console.log(self.getIOTdata);
 
-  }
+  // }
 
 
+  // 'https://radiant-cove-60089.herokuapp.com/api/v1/login'
 
   self.getTemp = function () {
     $http({
@@ -80,7 +81,7 @@ myApp.controller('UserController', ['UserService', '$http', function (UserServic
       // chart.chart.config.data.labels = response.data.feeds[4].created_at;
       chart.chart.config.data.datasets[0].data = response.data.feeds[4].field1;
       console.log(chart.chart.config.data.datasets[0].data);
-      
+
       console.log(response.data.feeds[4].field1);
       console.log(response.data.feeds[4].created_at);
 
