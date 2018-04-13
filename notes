@@ -1,0 +1,13 @@
+      //The last temp reading
+      // chart.chart.config.data.labels = response.data.feeds[4].created_at;
+      chart.chart.config.data.datasets[0].data = response.data.feeds[4].field1;
+      console.log(chart.chart.config.data.datasets[0].data);
+      console.log(response.data.feeds[4].field1);
+      console.log(response.data.feeds[4].created_at);
+
+           // self.espTemp = response.data.feeds[4].field1;
+      //The last 5 temp readings console
+      console.log(self.tableTemp);
+      console.log(self.tableTemp.list);
+      //The last temp reading console
+      // console.log('temp', self.espTemp);

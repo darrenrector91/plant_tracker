@@ -6,29 +6,29 @@ myApp.controller('UserController', ['UserService', '$http', function (UserServic
   self.espTemp = {}
   self.tableTemp = {
     list: []
+  
   }
+  let results = [6,8,4,10,2];
+  let labels = ['A','B','C','D','E'];
+  
 
-  /* Graph */
   var ctx = document.getElementById('lineChart').getContext('2d');
-  console.log();
 
   var chart = new Chart(ctx, {
-    // Chart type
     type: 'line',
 
-    // dataset
     data: {
-      labels: [],
+      labels: labels,
       datasets: [{
         label: "Office Temperature",
-        backgroundColor: 'rgb(255,0,0)',
-        borderColor: 'rgb(255, 0, 0)',
-        data: [],
+        backgroundColor: 'rgb(164, 198, 57)',
+        borderColor: 'rgb(164, 198, 57)',
+        data: results,
         fill: false
       }]
+      
     },
 
-    // Configurations
     options: {
       title: {
         display: true,
@@ -58,6 +58,7 @@ myApp.controller('UserController', ['UserService', '$http', function (UserServic
         position: 'bottom'
       }
     }
+    
   });
 
   // self.getIOTdata = function () {
@@ -65,35 +66,39 @@ myApp.controller('UserController', ['UserService', '$http', function (UserServic
   //   console.log(self.getIOTdata);
 
   // }
-
-
-  // 'https://radiant-cove-60089.herokuapp.com/api/v1/login'
-
+  /* Graph */
   self.getTemp = function () {
     $http({
       method: 'GET',
-      url: 'https://api.thingspeak.com/channels/470875/feeds.json?api_key=BVCBAPTG0YM0STEA&results=5'
+      url: 'https://api.thingspeak.com/channels/470875/fields/1.json?api_key=BVCBAPTG0YM0STEA&results=20'
     }).then(function (response) {
-      //The last 5 temp readings
-      self.tableTemp.list = response.data.feeds;
+      // jsonData = response.data.channel.updated_at;
+      // jsonData = response.data;
+      // console.log(jsonData.feeds);
+      console.log(response.data.feeds);
+      
+      // let labels = [];
+      for (var i = 0; i < response.data.feeds.length; i++) {
+        labels.push(response.data.feeds[i].created_at);
+      }
+      console.log(labels);
 
-      //The last temp reading
-      // chart.chart.config.data.labels = response.data.feeds[4].created_at;
-      chart.chart.config.data.datasets[0].data = response.data.feeds[4].field1;
-      console.log(chart.chart.config.data.datasets[0].data);
-
-      console.log(response.data.feeds[4].field1);
-      console.log(response.data.feeds[4].created_at);
-
+      
+      // let data = [];
+      // for (var i = 0; i < json.length; i++) {
+      //   data.push(json[i].field1);
+      // }
       chart.update();
-
-      // self.espTemp = response.data.feeds[4].field1;
-      //The last 5 temp readings console
-      console.log(self.tableTemp);
-      console.log(self.tableTemp.list);
-      //The last temp reading console
-      // console.log('temp', self.espTemp);
     })
   }
   self.getTemp();
+
+  Date.prototype.formatMMDDYYYY = function () {
+    return (this.getMonth() + 1) +
+      "/" + this.getDate() +
+      "/" + this.getFullYear();
+  }
+
+
+
 }]);
