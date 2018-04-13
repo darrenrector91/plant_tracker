@@ -8,8 +8,8 @@ myApp.controller('UserController', ['UserService', '$http', function (UserServic
     list: []
   
   }
-  let results = [6,8,4,10,2];
-  let labels = ['A','B','C','D','E'];
+  let results = [];
+  let labels = [];
   
 
   var ctx = document.getElementById('lineChart').getContext('2d');
@@ -72,9 +72,6 @@ myApp.controller('UserController', ['UserService', '$http', function (UserServic
       method: 'GET',
       url: 'https://api.thingspeak.com/channels/470875/fields/1.json?api_key=BVCBAPTG0YM0STEA&results=20'
     }).then(function (response) {
-      // jsonData = response.data.channel.updated_at;
-      // jsonData = response.data;
-      // console.log(jsonData.feeds);
       console.log(response.data.feeds);
       
       // let labels = [];
@@ -83,11 +80,11 @@ myApp.controller('UserController', ['UserService', '$http', function (UserServic
       }
       console.log(labels);
 
+      for (var i = 0; i < response.data.feeds.length; i++) {
+        results.push(response.data.feeds[i].field1);
+      }
+      console.log(results);
       
-      // let data = [];
-      // for (var i = 0; i < json.length; i++) {
-      //   data.push(json[i].field1);
-      // }
       chart.update();
     })
   }
