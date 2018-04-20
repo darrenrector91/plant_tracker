@@ -1,10 +1,18 @@
 <div class="container">
     <div class="row">
-        <div class="one-whole column" style="margin-top: 1%">
+        <div style="margin-top: 1%">
             <h1 class="homeTitle">NodeMCU 8266/DS18B20 Temp Data</h1>
         </div>
     </div>
     <div>
         <canvas id="lineChart"></canvas>
+    </div>
+    <div>
+        <canvas id="demo"></canvas>
+    </div>
+    <button onclick="myFunction()">Try it</button>
+    <div id="refreshBtn">
+        <button class="btn button-primary" ng-click="self.refreshTable()">Refresh</button>
+        <button class="btn button-primary">History</button>
     </div>
 </div>

@@ -1,6 +1,6 @@
 body,
 html {
-    background-color: #efefef;
+    background-color: #e6e1e1;
 }
 
 chartCollection {
@@ -15,5 +15,6 @@ height: 100%;
 
 .homeTitle {
     color: #000;
+    text-align: center;
     text-shadow: 1px 1px 1px #D1DA59;
 }
