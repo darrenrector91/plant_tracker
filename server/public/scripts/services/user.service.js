@@ -11,8 +11,7 @@ myApp.service('UserService', ['$http', '$location', function ($http, $location) 
     self.getTemp = function () {
         $http({
             method: 'GET',
-            url: 'GET https://api.thingspeak.com/channels/470875/feeds.json?api_key=3418Y1ZLI8BSNQ8W&results=2'
-            // url: 'https://api.thingspeak.com/channels/470875/feeds.json?api_key=BVCBAPTG0YM0STEA&results=5'
+            url: 'GET https://api.thingspeak.com/channels/470875/fields/1.json?api_key=A59ZTI1P9ONS0ZRF&results=5'
         }).then(function (response) {
             //The last 5 temp readings
             self.tableTemp.list = response.data.feeds;

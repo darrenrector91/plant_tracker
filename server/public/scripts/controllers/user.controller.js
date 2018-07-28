@@ -14,7 +14,7 @@ myApp.controller('UserController', ['UserService', '$http', function (UserServic
     data: {
       labels: [],
       datasets: [{
-        label: "Office Temperature",
+        label: "Soil Temperature",
         backgroundColor: 'rgb(255,0,0)',
         borderColor: 'rgb(255, 0, 0)',
         data: [],
@@ -26,7 +26,7 @@ myApp.controller('UserController', ['UserService', '$http', function (UserServic
     options: {
       title: {
         display: true,
-        text: 'Office Temp',
+        text: 'Soil Temp',
         position: 'top',
         fontSize: 24,
         fontColor: '#000000'
