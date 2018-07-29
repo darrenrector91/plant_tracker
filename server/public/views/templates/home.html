@@ -1,10 +1,13 @@
 <div class="container">
-    <div class="row">
-        <div class="one-whole column" style="margin-top: 1%">
-            <h1 class="homeTitle">NodeMCU 8266/DS18B20 Temp Data</h1>
-        </div>
+    <div class="header">
+            <h1 class="homeTitle">Plant Monitor</h1>
+            <img class="logo" src="images/iot_logo.gif" alt="iot_logo" height=100 width=75>
     </div>
-    <div class="one-whole column lineChart" flex=50 layout="column">
-        <canvas id="lineChart"></canvas>
+    <div class="chart-wrap">
+        <canvas id="lineChart" class="soilTemp"></canvas>
+        <br>
+        <canvas id="lineChart-Moisture" class="soilMoisture"></canvas>
+        <button class="btnRefresh" ng-click="vm.btnRefresh(vm.refresh)" name="refreshButton">Refresh</button>
     </div>
 </div>
+

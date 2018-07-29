@@ -5,12 +5,20 @@ myApp.controller('UserController', ['UserService', '$http', function (UserServic
   self.userObject = UserService.userObject;
 
   let data = [];
-  // console.log(data);
+  console.log(data);
 
   let labels = [];
   // console.log(labels);
 
+  let moisture = [];
+  //console.log(moisture);
+  
+  let moistureLabels = [];
+  // console.log(moistureLabels);
+  
+
   var ctx = document.getElementById('lineChart').getContext('2d');
+  var ctxMoisture = document.getElementById('lineChart-Moisture').getContext('2d');
 
   var chart = new Chart(ctx, {
     type: 'line',
@@ -18,31 +26,31 @@ myApp.controller('UserController', ['UserService', '$http', function (UserServic
     data: {
       labels: labels,
       datasets: [{
-        label: "Office",
+        label: "Soil Temperature",
         backgroundColor: '#ff0000',
         borderColor: '#ff0000',
         data: data,
-        fill: false,
+        fill: false
       }]
     },
 
     options: {
       title: {
         display: true,
-        text: 'Office',
+        text: 'Soil Temperature',
         position: 'top',
-        fontSize: 24,
+        fontSize: 40,
         fontColor: '#000'
       },
       scales: {
         yAxes: [{
           ticks: {
-            fontSize: 15,
+            fontSize: 20,
             fontColor: '#000',
           },
           scaleLabel: {
-            display: true,
-            // labelString: 'Temp in ˚F',
+            display: false,
+            //labelString: 'Temp in ˚F',
             fontSize: 20
           }
         }],
@@ -52,14 +60,76 @@ myApp.controller('UserController', ['UserService', '$http', function (UserServic
             fontColor: '#000'
           },
           scaleLabel: {
-            display: true,
-            // labelString: 'Date/Time',
+            display: false,
+            //labelString: 'Date/Time',
             fontSize: 20
           }
         }]
       },
+      hover: {
+        mode: 'nearest',
+        fontSize: 8
+      },
       legend: {
+        display: false,
+        position: 'bottom'
+      }
+    }
+
+  });
+
+  var chartMoisture = new Chart(ctxMoisture, {
+    type: 'line',
+
+    data: {
+      labels: labels,
+      datasets: [{
+        label: "Soil Moisture",
+        backgroundColor: '#ff0000',
+        borderColor: '#ff0000',
+        data: moisture,
+        fill: false
+      }]
+    },
+
+    options: {
+      title: {
         display: true,
+        text: 'Soil Moisture',
+        position: 'top',
+        fontSize: 40,
+        fontColor: '#000'
+      },
+      scales: {
+        yAxes: [{
+          ticks: {
+            fontSize: 20,
+            fontColor: '#000',
+          },
+          scaleLabel: {
+            display: false,
+            //labelString: 'Temp in ˚F',
+            fontSize: 20
+          }
+        }],
+        xAxes: [{
+          ticks: {
+            fontSize: 20,
+            fontColor: '#000'
+          },
+          scaleLabel: {
+            display: false,
+            //labelString: 'Date/Time',
+            fontSize: 20
+          }
+        }]
+      },
+      hover: {
+        mode: 'nearest',
+        fontSize: 8
+      },
+      legend: {
+        display: false,
         position: 'bottom'
       }
     }
@@ -70,39 +140,35 @@ myApp.controller('UserController', ['UserService', '$http', function (UserServic
   self.getTemp = function () {
     $http({
       method: 'GET',
-      url: 'https://api.thingspeak.com/channels/470875/fields/1.json?api_key=A59ZTI1P9ONS0ZRF&results=5'
+      url: 'https://api.thingspeak.com/channels/470875/feeds.json?api_key=3418Y1ZLI8BSNQ8W&results=5'
     }).then(function (response) {
       let jsonData = response.data.feeds;
-      // console.log('self.espData', self.espData);
-      // console.log(jsonData);
-
+      console.log('jsonData', jsonData);
+      
       for (var i = 0; i < jsonData.length; i++) {
         labels.push(jsonData[i].created_at);
-        // console.log(jsonData[i].created_at);
       }
-      console.log('dates', labels);
-      // let sum = {};
-      let avg = {};
       let arrLength = jsonData.length;
 
       for (var i = 0; i < arrLength; i++) {
         data.push(jsonData[i].field1);
-        // console.log(jsonData[i].field1);
       }
       console.log('temps', data);
       element = 0;
       for (let i = 0; i < data.length; i++) {
-        // element += data[i];
-        // let z = console.log(parseInt(data[i]));
       }
       chart.update();
-    })
+    })   
   }
   self.getTemp();
 
   self.reloadRoute = function() {
     route.reload();
  }
+
+ self.btnSearch = function () {
+  self.getTemp();
+}
 }]);
 
 // need to figure out how to make auto checks to api 
